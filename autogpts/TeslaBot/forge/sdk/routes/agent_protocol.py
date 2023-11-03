@@ -355,6 +355,15 @@ async def execute_agent_task_step(
         if not step:
             step = StepRequestBody(input="y")
 
+        agent_class_name = agent.__class__.__name__
+
+        print(f"The class of the agent is: {agent_class_name}")
+
+        if agent_class_name == 'ForgeAgent':
+            print("This is a ForgeAgent")
+        else:
+            print(f"This is not a ForgeAgent, it is a {agent_class_name}")
+
         step = await agent.execute_step(task_id, step)
         return Response(
             content=step.json(),

@@ -116,7 +116,7 @@ class ForgeAgent(Agent):
         )
         return task
 
-async def execute_step(self, task_id: str, step_request: StepRequestBody) -> Step:
+    async def execute_step(self, task_id: str, step_request: StepRequestBody) -> Step:
         self.workspace.write(task_id=task_id, path="output.txt", data=b"Research Agent is thinking...")
         step = await self.db.create_step(
             task_id=task_id, input=step_request, is_last=True
